@@ -1,0 +1,126 @@
+<div class="container registerForm">
+
+    <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-lg-2">
+                    <label for="Full Name">Full Name *</label>
+                </div>
+                <div class="col-lg-3">
+                    <input type="text" formControlName="firstName" class="form-control" placeholder="First Name">
+                </div>
+                <div class="col-lg-3">
+                    <input type="text" formControlName="middleName" class="form-control" placeholder="Middle Name">
+                </div>
+                <div class="col-lg-3">
+                    <input type="text" formControlName="lastName" class="form-control" placeholder="Last Name">
+                </div>
+            </div>
+        </div>
+
+        <div formGroupName="address" class="form-group">
+            <div class="row">
+                <div class="col-lg-2">
+                    <label for="Current Address">Current Address</label>
+                </div>
+                <div class="col-lg-9">
+                    <div class="row-lg-9 form-group">
+                        <input type="text" formControlName="addrLine1" class="form-control"
+                            placeholder="Street Address">
+                    </div>
+                    <div class="row-lg-9 form-group">
+                        <input type="text" formControlName="addrLine2" class="form-control"
+                            placeholder="Street Address Line 2">
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-lg-6">
+                            <input type="text" formControlName="city" class="form-control" placeholder="City">
+                        </div>
+                        <div class="col-lg-6">
+                            <input type="text" formControlName="state" class="form-control"
+                                placeholder="State / Province">
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-lg-6">
+                            <input type="number" formControlName="zipCode" class="form-control"
+                                placeholder="Postal / Zip Code">
+                        </div>
+                        <div class="col-lg-6">
+                            <select formControlName="country" class="form-control">
+                                <option [ngValue]="'Country'">Country</option>
+                                <option [ngValue]="'India'">India</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-lg-2">
+                    <label for="Email Address">Email Address *</label>
+                </div>
+                <div class="col-lg-9">
+                    <input type="email" formControlName="email" class="form-control"
+                        placeholder="ex. myname@example.com">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-lg-2">
+                    <label for="Phone Number">Phone Number</label>
+                </div>
+                <div class="col-lg-2">
+                    <input type="number" formControlName="areaCode" class="form-control" placeholder="Area Code">
+                </div>
+                <div class="col-lg-0">
+                    <p>-</p>
+                </div>
+                <div class="col-lg-3">
+                    <input type="text" formControlName="phone" class="form-control" placeholder="Phone Number">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-lg-2">
+                    <label for="Position">Applying For Position *</label>
+                </div>
+                <div class="col-lg-5">
+                    <select formControlName="position" class="form-control">
+                        <option [ngValue]="'Position'">Position</option>
+                        <option [ngValue]="'HR'">HR</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-lg-2">
+                    <label for="Start Date">Start Date</label>
+                </div>
+                <div class="col-lg-5">
+                    <input type="date" formControlName="startDate" class="form-control">
+                </div>
+            </div>
+        </div>
+
+        <br>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-lg-2"></div>
+                <div class="col-lg-2">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+</div>

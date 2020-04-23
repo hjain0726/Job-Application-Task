@@ -1,16 +1,41 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule} from "@angular/common/http";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { CommonModule } from '@angular/common';
+
+import { AppRoutingModule } from './app-routing.module';
+
 
 import { AppComponent } from './app.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { UserRegisterComponent } from './user-register/user-register.component';
+import { UserDetailsEditComponent } from './user-details-edit/user-details-edit.component';
+import { UsersListComponent } from './users-list/users-list.component';
+import { ConfigService } from './services/config.service';
+import { UserService } from './services/user.service';
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NavbarComponent,
+    UserRegisterComponent,
+    UserDetailsEditComponent,
+    UsersListComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    CommonModule,
+    FormsModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    AppRoutingModule,
   ],
-  providers: [],
+  providers: [
+    ConfigService,
+    UserService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

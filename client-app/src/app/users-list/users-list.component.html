@@ -1,0 +1,37 @@
+<div class="container" *ngIf="Users.length>0">
+    <div class="card userlist" *ngFor="let user of Users; let i=index">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-lg-2">
+                    <h5>Sno. {{i+1}}</h5>
+                </div>
+                <div class="col-lg-10">
+                    <button class="btn btn-success ed" (click)="deleteUser(user.id)"><i class="fa fa-trash"></i></button>
+                    <button class="btn btn-primary ed editbtn" (click)="editUserDetail(user)"><i class="fa fa-pencil"></i></button>
+                </div> 
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-lg-6">
+                    <p class="card-text">First Name : {{user.firstName | uppercase}}</p>
+                    <p class="card-text">Middle Name : {{user.middleName | uppercase}}</p>
+                    <p class="card-text">Last Name : {{user.lastName | uppercase}}</p>
+                    <p class="card-text">Email : {{user.email}}</p>
+                    <p class="card-text">Area Code : {{ user.areaCode}}</p>
+                    <p class="card-text">Phone Number : {{user.phone}}</p>
+                    <p class="card-text">Applying For : {{user.position}}</p>
+                </div>
+                <div class="col-lg-6">
+                    <p class="card-text">Start Date : {{user.startDate}}</p>
+                    <p class="card-text">Street Address : {{user.address.addrLine1}}</p>
+                    <p class="card-text">Street Address Line2 : {{user.address.addrLine2}}</p>
+                    <p class="card-text">City : {{user.address.city}}</p>
+                    <p class="card-text">State : {{user.address.state}}</p>
+                    <p class="card-text">Country : {{user.address.country}}</p>
+                    <p class="card-text">ZipCode : {{user.address.zipCode}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
