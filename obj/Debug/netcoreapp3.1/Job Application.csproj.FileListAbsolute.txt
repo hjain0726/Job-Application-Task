@@ -1,5 +1,19 @@
+C:\Users\harsh\source\repos\Job Application\obj\Debug\netcoreapp3.1\staticwebassets\Job Application.StaticWebAssets.Manifest.cache
+C:\Users\harsh\source\repos\Job Application\obj\Debug\netcoreapp3.1\staticwebassets\Job Application.StaticWebAssets.xml
+C:\Users\harsh\source\repos\Job Application\obj\Debug\netcoreapp3.1\Job Application.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\harsh\source\repos\Job Application\obj\Debug\netcoreapp3.1\Job Application.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\harsh\source\repos\Job Application\obj\Debug\netcoreapp3.1\Job Application.AssemblyInfoInputs.cache
+C:\Users\harsh\source\repos\Job Application\obj\Debug\netcoreapp3.1\Job Application.AssemblyInfo.cs
 C:\Users\harsh\source\repos\Job Application\bin\Debug\netcoreapp3.1\appsettings.Development.json
 C:\Users\harsh\source\repos\Job Application\bin\Debug\netcoreapp3.1\appsettings.json
+C:\Users\harsh\source\repos\Job Application\bin\Debug\netcoreapp3.1\client-app\angular.json
+C:\Users\harsh\source\repos\Job Application\bin\Debug\netcoreapp3.1\client-app\e2e\tsconfig.json
+C:\Users\harsh\source\repos\Job Application\bin\Debug\netcoreapp3.1\client-app\package-lock.json
+C:\Users\harsh\source\repos\Job Application\bin\Debug\netcoreapp3.1\client-app\package.json
+C:\Users\harsh\source\repos\Job Application\bin\Debug\netcoreapp3.1\client-app\tsconfig.app.json
+C:\Users\harsh\source\repos\Job Application\bin\Debug\netcoreapp3.1\client-app\tsconfig.json
+C:\Users\harsh\source\repos\Job Application\bin\Debug\netcoreapp3.1\client-app\tsconfig.spec.json
+C:\Users\harsh\source\repos\Job Application\bin\Debug\netcoreapp3.1\client-app\tslint.json
 C:\Users\harsh\source\repos\Job Application\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
 C:\Users\harsh\source\repos\Job Application\bin\Debug\netcoreapp3.1\Job Application.exe
 C:\Users\harsh\source\repos\Job Application\bin\Debug\netcoreapp3.1\Job Application.deps.json
@@ -139,12 +153,6 @@ C:\Users\harsh\source\repos\Job Application\bin\Debug\netcoreapp3.1\runtimes\win
 C:\Users\harsh\source\repos\Job Application\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\harsh\source\repos\Job Application\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\harsh\source\repos\Job Application\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-C:\Users\harsh\source\repos\Job Application\obj\Debug\netcoreapp3.1\staticwebassets\Job Application.StaticWebAssets.Manifest.cache
-C:\Users\harsh\source\repos\Job Application\obj\Debug\netcoreapp3.1\staticwebassets\Job Application.StaticWebAssets.xml
-C:\Users\harsh\source\repos\Job Application\obj\Debug\netcoreapp3.1\Job Application.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\harsh\source\repos\Job Application\obj\Debug\netcoreapp3.1\Job Application.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\harsh\source\repos\Job Application\obj\Debug\netcoreapp3.1\Job Application.AssemblyInfoInputs.cache
-C:\Users\harsh\source\repos\Job Application\obj\Debug\netcoreapp3.1\Job Application.AssemblyInfo.cs
 C:\Users\harsh\source\repos\Job Application\obj\Debug\netcoreapp3.1\Job Application.RazorTargetAssemblyInfo.cache
 C:\Users\harsh\source\repos\Job Application\obj\Debug\netcoreapp3.1\Job Application.csproj.CopyComplete
 C:\Users\harsh\source\repos\Job Application\obj\Debug\netcoreapp3.1\Job Application.dll

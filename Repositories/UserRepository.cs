@@ -24,7 +24,7 @@ namespace Job_Application.Repositories
             var userList = await _context.User.ToListAsync();
             foreach (User user in userList)
             {
-                user.Address = _context.Address.FirstOrDefault(a => a.UserId == user.Id);
+                user.address = _context.Address.FirstOrDefault(a => a.Userid == user.id);
             }
             return userList;
         }
@@ -33,14 +33,14 @@ namespace Job_Application.Repositories
         public async Task<User> GetUserById(int id)
         {
             var user= await _context.User.FindAsync(id);
-            user.Address = _context.Address.FirstOrDefault(a => a.UserId == user.Id);
+            user.address = _context.Address.FirstOrDefault(a => a.Userid == user.id);
             return user;
         }
 
         // To get user by email
         public User GetUserByEmail(User user)
         {
-            var userobj = _context.User.FirstOrDefault(u => u.Email == user.Email);
+            var userobj = _context.User.FirstOrDefault(u => u.email == user.email);
             return userobj;
         }
 
@@ -57,7 +57,7 @@ namespace Job_Application.Repositories
         public async Task<User> EditUser(int id, User user)
         {
             // Edit address
-            Address address = user.Address;
+            Address address = user.address;
             _context.Entry(address).State = EntityState.Modified;
 
             // Edit rest user's details
@@ -77,7 +77,7 @@ namespace Job_Application.Repositories
         // To check user Exists or not by user id
         public bool UserExists(int id)
         {
-            return _context.User.Any(e => e.Id == id);
+            return _context.User.Any(e => e.id == id);
         }
     }
 }

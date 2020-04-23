@@ -20,35 +20,35 @@ namespace Job_Application.Migrations
 
             modelBuilder.Entity("Job_Application.Models.Address", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("AddrLine1")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("AddrLine2")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("City")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Country")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("State")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("UserId")
+                    b.Property<int>("Userid")
                         .HasColumnType("int");
 
-                    b.Property<int>("ZipCode")
+                    b.Property<string>("addrLine1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("addrLine2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("city")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("country")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("state")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("zipCode")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("id");
 
-                    b.HasIndex("UserId")
+                    b.HasIndex("Userid")
                         .IsUnique();
 
                     b.ToTable("Address");
@@ -56,36 +56,36 @@ namespace Job_Application.Migrations
 
             modelBuilder.Entity("Job_Application.Models.User", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("AreaCode")
+                    b.Property<int>("areaCode")
+                        .HasColumnType("int");
+
+                    b.Property<string>("email")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Email")
+                    b.Property<string>("firstName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("FirstName")
+                    b.Property<string>("lastName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("LastName")
+                    b.Property<string>("middleName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("MiddleName")
+                    b.Property<string>("phone")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Phone")
+                    b.Property<string>("position")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Position")
+                    b.Property<string>("startDate")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("StartDate")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
+                    b.HasKey("id");
 
                     b.ToTable("User");
                 });
@@ -93,8 +93,8 @@ namespace Job_Application.Migrations
             modelBuilder.Entity("Job_Application.Models.Address", b =>
                 {
                     b.HasOne("Job_Application.Models.User", "User")
-                        .WithOne("Address")
-                        .HasForeignKey("Job_Application.Models.Address", "UserId")
+                        .WithOne("address")
+                        .HasForeignKey("Job_Application.Models.Address", "Userid")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

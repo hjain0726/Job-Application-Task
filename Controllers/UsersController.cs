@@ -74,7 +74,7 @@ namespace Job_Application.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutUser(int id, User user)
         {
-            if (id != user.Id)
+            if (id != user.id)
             {
                 return BadRequest("User Id does not matches");
             }

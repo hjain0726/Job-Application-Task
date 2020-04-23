@@ -7,15 +7,15 @@ namespace Job_Application.Models
 {
     public class User
     {
-        public int Id { get; set; }
-        public string FirstName { get; set; }
-        public string MiddleName { get; set; }
-        public string LastName { get; set; }
-        public Address Address { get; set; }
-        public string Email { get; set; }
-        public string AreaCode { get; set; }
-        public string Phone { get; set; }
-        public string Position { get; set; }
-        public string StartDate { get; set; }
+        public int id { get; set; }
+        public string firstName { get; set; }
+        public string middleName { get; set; }
+        public string lastName { get; set; }
+        public Address address { get; set; }
+        public string email { get; set; }
+        public int areaCode { get; set; }
+        public string phone { get; set; }
+        public string position { get; set; }
+        public string startDate { get; set; }
     }
 }
