@@ -9,3 +9,7 @@ button:disabled {
     cursor: not-allowed;
     pointer-events: all !important;
 }
+.fa {
+    margin-right: 8px;
+  }
+  

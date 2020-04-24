@@ -3,6 +3,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
 
+declare var swal: any;
+
 @Component({
   selector: 'app-user-register',
   templateUrl: './user-register.component.html',
@@ -11,7 +13,7 @@ import { Router } from '@angular/router';
 export class UserRegisterComponent implements OnInit {
 
   registerForm: FormGroup;
-
+  loader: boolean = false;
   constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
@@ -20,22 +22,35 @@ export class UserRegisterComponent implements OnInit {
 
   // To register User
   onRegister() {
-    if(this.registerForm.value.middleName==null){
-      this.registerForm.value.middleName="NA";
+    this.loader = true;
+
+    if (this.registerForm.value.middleName == null) {
+      this.registerForm.value.middleName = "NA";
     }
-    if(this.registerForm.value.startDate==null){
-      this.registerForm.value.startDate="NA";
+    if (this.registerForm.value.startDate == null) {
+      this.registerForm.value.startDate = "NA";
     }
-    if(this.registerForm.value.address.addrLine2==null){
-      this.registerForm.value.address.addrLine2="NA";
+    if (this.registerForm.value.address.addrLine2 == null) {
+      this.registerForm.value.address.addrLine2 = "NA";
     }
 
     this.userService.registerUser(this.registerForm.value).subscribe((res) => {
-      console.log(res);
-      this.router.navigate(['/users'])
+      this.loader = false;
+      if (res['msg']['success']) {
+        this.router.navigate(['/users'])
+        swal("Done", res['msg']['message'], "success");
+      } else if (!res['msg']['success']) {
+        swal("Sorry!!", res['msg']['message']);
+      }
     }, (err) => {
+      this.loader = false;
       console.log(err);
     });
+  }
+
+  // To reset the form
+  resetForm(){
+    this.registerForm.reset();
   }
 
   // To create Register Form
@@ -77,5 +92,5 @@ export class UserRegisterComponent implements OnInit {
     });
   }
 
-  
+
 }

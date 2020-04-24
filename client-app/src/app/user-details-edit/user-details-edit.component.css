@@ -9,3 +9,6 @@ button:disabled {
     cursor: not-allowed;
     pointer-events: all !important;
 }
+.fa-spinner {
+    margin-right: 8px;
+  }

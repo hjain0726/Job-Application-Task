@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
 
+declare var swal: any;
 
 @Component({
   selector: 'app-user-details-edit',
@@ -12,7 +13,7 @@ import { Router } from '@angular/router';
 export class UserDetailsEditComponent implements OnInit {
 
   userDetailsEditForm: FormGroup
-
+  loader:boolean=false;
   constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
@@ -21,6 +22,7 @@ export class UserDetailsEditComponent implements OnInit {
   }
 
   onEdit() {
+    this.loader=true;
     if(this.userDetailsEditForm.value.middleName==null){
       this.userDetailsEditForm.value.middleName="NA";
     }
@@ -33,9 +35,11 @@ export class UserDetailsEditComponent implements OnInit {
 
     let userId = this.userService.userDetailsToBeEdit.id;
     this.userService.editUserDetails(userId, this.userDetailsEditForm.value).subscribe((res) => {
-      console.log(res);
+      this.loader=false;
       this.router.navigate(['/users']);
+      swal("Done", res['msg']['message'], "success");
     }, (err) => {
+      this.loader=false;
       console.log(err);
     });
   }

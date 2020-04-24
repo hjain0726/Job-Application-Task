@@ -1,3 +1,13 @@
+<div *ngIf="loader" class="lds-facebook">
+    <div></div>
+    <div></div>
+    <div></div>
+</div>
+
+<div id="nouser" *ngIf="Users.length==0">
+    <h5>No users to show</h5>
+</div>
+
 <div class="container" *ngIf="Users.length>0">
     <div class="card userlist" *ngFor="let user of Users; let i=index">
         <div class="card-header">
