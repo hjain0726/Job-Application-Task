@@ -36,7 +36,7 @@ namespace Job_Application.Migrations
                     addrLine2 = table.Column<string>(nullable: true),
                     city = table.Column<string>(nullable: true),
                     state = table.Column<string>(nullable: true),
-                    zipCode = table.Column<int>(nullable: false),
+                    zipCode = table.Column<string>(nullable: true),
                     country = table.Column<string>(nullable: true),
                     Userid = table.Column<int>(nullable: false)
                 },

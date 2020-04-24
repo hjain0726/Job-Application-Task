@@ -43,8 +43,8 @@ namespace Job_Application.Migrations
                     b.Property<string>("state")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("zipCode")
-                        .HasColumnType("int");
+                    b.Property<string>("zipCode")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("id");
 

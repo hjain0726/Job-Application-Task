@@ -17,10 +17,20 @@ export class UserDetailsEditComponent implements OnInit {
 
   ngOnInit(): void {
     this.createDetailsEditForm();
-    this.userDetailsEditForm.patchValue(this.userService.userDetailsToBeEdit);
+    this.userDetailsEditForm.patchValue(this.userService.userDetailsToBeEdit);  
   }
 
   onEdit() {
+    if(this.userDetailsEditForm.value.middleName==null){
+      this.userDetailsEditForm.value.middleName="NA";
+    }
+    if(this.userDetailsEditForm.value.startDate==null){
+      this.userDetailsEditForm.value.startDate="NA";
+    }
+    if(this.userDetailsEditForm.value.address.addrLine2==null){
+      this.userDetailsEditForm.value.address.addrLine2="NA";
+    }
+
     let userId = this.userService.userDetailsToBeEdit.id;
     this.userService.editUserDetails(userId, this.userDetailsEditForm.value).subscribe((res) => {
       console.log(res);
@@ -33,25 +43,40 @@ export class UserDetailsEditComponent implements OnInit {
   createDetailsEditForm() {
     this.userDetailsEditForm = new FormGroup({
       'id': new FormControl(null),
-      'firstName': new FormControl(null, [Validators.required]),
-      'middleName': new FormControl(null),
-      'lastName': new FormControl(null, [Validators.required]),
+      'firstName': new FormControl(null, [Validators.required, Validators.pattern('[a-zA-Z ]*')]),
+      'middleName': new FormControl(null, [Validators.pattern('[a-zA-Z ]*')]),
+      'lastName': new FormControl(null, [Validators.required, Validators.pattern('[a-zA-Z ]*')]),
 
       'address': new FormGroup({
         'id': new FormControl(null),
         'addrLine1': new FormControl(null, [Validators.required]),
-        'addrLine2': new FormControl(null, [Validators.required]),
-        'city': new FormControl(null, [Validators.required]),
-        'state': new FormControl(null, [Validators.required]),
-        'zipCode': new FormControl(null, [Validators.required]),
+        'addrLine2': new FormControl(null),
+        'city': new FormControl(null, [Validators.required, Validators.pattern('[a-zA-Z ]*')]),
+        'state': new FormControl(null, [Validators.required, Validators.pattern('[a-zA-Z ]*')]),
+        'zipCode': new FormControl(null, [
+          Validators.required,
+          Validators.minLength(5),
+        ]),
         'country': new FormControl(null, [Validators.required])
       }),
 
-      'email': new FormControl(null, [Validators.required]),
-      'areaCode': new FormControl(null, [Validators.required]),
-      'phone': new FormControl(null, [Validators.required]),
+      'email': new FormControl(null, [
+        Validators.required,
+        Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')
+      ]),
+      'areaCode': new FormControl(null, [
+        Validators.required,
+        Validators.min(100),
+        Validators.max(999)
+      ]),
+      'phone': new FormControl(null, [
+        Validators.required,
+        Validators.minLength(10),
+        Validators.maxLength(10),
+        Validators.pattern('[0-9]*')
+      ]),
       'position': new FormControl(null, [Validators.required]),
-      'startDate': new FormControl(null, [Validators.required])
+      'startDate': new FormControl(null)
     });
   }
 

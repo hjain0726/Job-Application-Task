@@ -9,12 +9,18 @@
                 </div>
                 <div class="col-lg-3">
                     <input type="text" formControlName="firstName" class="form-control" placeholder="First Name">
+                    <small *ngIf="!userDetailsEditForm.get('firstName').valid && userDetailsEditForm.get('firstName').touched"
+                    class="form-text helpmsg">Valid first name required</small>
                 </div>
                 <div class="col-lg-3">
                     <input type="text" formControlName="middleName" class="form-control" placeholder="Middle Name">
+                    <small *ngIf="!userDetailsEditForm.get('middleName').valid && userDetailsEditForm.get('middleName').touched"
+                    class="form-text helpmsg">Valid middle name required</small>
                 </div>
                 <div class="col-lg-3">
                     <input type="text" formControlName="lastName" class="form-control" placeholder="Last Name">
+                    <small *ngIf="!userDetailsEditForm.get('lastName').valid && userDetailsEditForm.get('lastName').touched"
+                    class="form-text helpmsg">Valid last name required</small>
                 </div>
             </div>
         </div>
@@ -22,12 +28,14 @@
         <div formGroupName="address" class="form-group">
             <div class="row">
                 <div class="col-lg-2">
-                    <label for="Current Address">Current Address</label>
+                    <label for="Current Address">Current Address *</label>
                 </div>
                 <div class="col-lg-9">
                     <div class="row-lg-9 form-group">
                         <input type="text" formControlName="addrLine1" class="form-control"
                             placeholder="Street Address">
+                        <small *ngIf="!userDetailsEditForm.get('address.addrLine1').valid && userDetailsEditForm.get('address.addrLine1').touched"
+                        class="form-text helpmsg">Address required</small>    
                     </div>
                     <div class="row-lg-9 form-group">
                         <input type="text" formControlName="addrLine2" class="form-control"
@@ -36,22 +44,32 @@
                     <div class="row form-group">
                         <div class="col-lg-6">
                             <input type="text" formControlName="city" class="form-control" placeholder="City">
+                            <small *ngIf="!userDetailsEditForm.get('address.city').valid && userDetailsEditForm.get('address.city').touched"
+                            class="form-text helpmsg">Valid city required</small>
                         </div>
                         <div class="col-lg-6">
                             <input type="text" formControlName="state" class="form-control"
                                 placeholder="State / Province">
+                            <small *ngIf="!userDetailsEditForm.get('address.state').valid && userDetailsEditForm.get('address.state').touched"
+                            class="form-text helpmsg">Valid state/province required</small>    
                         </div>
                     </div>
                     <div class="row form-group">
                         <div class="col-lg-6">
-                            <input type="number" formControlName="zipCode" class="form-control"
+                            <input type="text" formControlName="zipCode" class="form-control"
                                 placeholder="Postal / Zip Code">
+                            <small *ngIf="!userDetailsEditForm.get('address.zipCode').valid && userDetailsEditForm.get('address.zipCode').touched"
+                            class="form-text helpmsg">Valid zipcode required</small>    
                         </div>
                         <div class="col-lg-6">
                             <select formControlName="country" class="form-control">
-                                <option [ngValue]="'Country'">Country</option>
+                                <option [ngValue]="null" [selected]=true [disabled]="true">Please Select Country</option>
                                 <option [ngValue]="'India'">India</option>
+                                <option [ngValue]="'USA'">USA</option>
+                                <option [ngValue]="'UK'">UK</option>
                             </select>
+                            <small *ngIf="!userDetailsEditForm.get('address.country').valid && userDetailsEditForm.get('address.country').touched"
+                            class="form-text helpmsg">Country required</small>
                         </div>
                     </div>
                 </div>
@@ -65,7 +83,9 @@
                 </div>
                 <div class="col-lg-9">
                     <input type="email" formControlName="email" class="form-control"
-                        placeholder="ex. myname@example.com">
+                        placeholder="Enter your email address">
+                    <small *ngIf="!userDetailsEditForm.get('email').valid && userDetailsEditForm.get('email').touched"
+                    class="form-text helpmsg">Valid email required</small>    
                 </div>
             </div>
         </div>
@@ -73,16 +93,20 @@
         <div class="form-group">
             <div class="row">
                 <div class="col-lg-2">
-                    <label for="Phone Number">Phone Number</label>
+                    <label for="Phone Number">Phone Number *</label>
                 </div>
                 <div class="col-lg-2">
                     <input type="number" formControlName="areaCode" class="form-control" placeholder="Area Code">
+                    <small *ngIf="!userDetailsEditForm.get('areaCode').valid && userDetailsEditForm.get('areaCode').touched"
+                    class="form-text helpmsg">Valid area code required</small>
                 </div>
                 <div class="col-lg-0">
                     <p>-</p>
                 </div>
                 <div class="col-lg-3">
                     <input type="text" formControlName="phone" class="form-control" placeholder="Phone Number">
+                    <small *ngIf="!userDetailsEditForm.get('phone').valid && userDetailsEditForm.get('phone').touched"
+                    class="form-text helpmsg">Valid phone number required</small>
                 </div>
             </div>
         </div>
@@ -94,9 +118,15 @@
                 </div>
                 <div class="col-lg-5">
                     <select formControlName="position" class="form-control">
-                        <option [ngValue]="'Position'">Position</option>
+                        <option [ngValue]="null" [selected]=true [disabled]="true">Select Position</option>
+                        <option [ngValue]="'Data Analyst'">Data Analyst</option>
+                        <option [ngValue]="'Full Stack Developer'">Full Stack Developer</option>
+                        <option [ngValue]="'Frontend Developer'">Frontend Developer</option>
+                        <option [ngValue]="'Backend Developer'">Backend Developer</option>
                         <option [ngValue]="'HR'">HR</option>
                     </select>
+                    <small *ngIf="!userDetailsEditForm.get('position').valid && userDetailsEditForm.get('position').touched"
+                    class="form-text helpmsg">Valid position required</small>
                 </div>
             </div>
         </div>
@@ -117,7 +147,7 @@
             <div class="row">
                 <div class="col-lg-2"></div>
                 <div class="col-lg-2">
-                    <button type="submit" class="btn btn-primary">Update</button>
+                    <button type="submit" class="btn btn-primary" [disabled]="userDetailsEditForm.invalid">Update</button>
                 </div>
             </div>
         </div>
