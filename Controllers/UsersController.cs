@@ -9,6 +9,8 @@ using Job_Application.Data;
 using Job_Application.Models;
 using Job_Application.Interfaces;
 using Job_Application.Helpers;
+using System.IO;
+using System.Net.Http.Headers;
 
 namespace Job_Application.Controllers
 {
@@ -123,6 +125,42 @@ namespace Job_Application.Controllers
         private bool UserExists(int id)
         {
             return _IUserRepository.UserExists(id);
+        }
+
+        // To upload Resume file
+        [Route("upload")]
+        [HttpPost, DisableRequestSizeLimit]
+        public IActionResult Upload()
+        {
+            try
+            {
+                var file = Request.Form.Files[0];
+                var folderName = Path.Combine("Resources", "Uploads");
+                var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
+
+                if (file.Length > 0)
+                {
+                    var fileName = DateTime.Now.ToString("yyyy’-‘MM’-‘dd’T’HH’:’mm’:’ss")+
+                       ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
+                    var fullPath = Path.Combine(pathToSave, fileName);
+                    var dbPath = Path.Combine(folderName, fileName);
+
+                    using (var stream = new FileStream(fullPath, FileMode.Create))
+                    {
+                        file.CopyTo(stream);
+                    }
+
+                    return Ok(new { dbPath });
+                }
+                else
+                {
+                    return BadRequest();
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex}");
+            }
         }
     }
 }

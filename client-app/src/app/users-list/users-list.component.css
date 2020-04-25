@@ -16,6 +16,10 @@
     margin: 20% 20% 50% 20%;
 }
 
+.vrbtn{
+  float: right;
+}
+
 .lds-facebook {
     display: inline-block;
     position: relative;

@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Job_Application.Migrations
 {
     [DbContext(typeof(Job_ApplicationContext))]
-    [Migration("20200424074215_first-migration")]
+    [Migration("20200425094034_first-migration")]
     partial class firstmigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -82,6 +82,9 @@ namespace Job_Application.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("position")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("resumeDbPath")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("startDate")

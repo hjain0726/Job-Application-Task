@@ -12,7 +12,7 @@ declare var swal: any;
 export class UsersListComponent implements OnInit {
 
   Users = [];
-  loader:boolean=true;
+  loader: boolean = true;
   constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
@@ -22,11 +22,11 @@ export class UsersListComponent implements OnInit {
   getUsers() {
     this.userService.getUsers().subscribe((users: []) => {
       this.Users = users;
-      this.loader=false;
+      this.loader = false;
       console.log(this.Users);
     }, (err) => {
       console.log(err);
-      this.loader=false;
+      this.loader = false;
     });
   }
 
@@ -57,5 +57,9 @@ export class UsersListComponent implements OnInit {
           swal("Your user record is safe!");
         }
       });
+  }
+
+  viewResume(resumeDbPath: string) {
+    window.location.href = this.userService.commonApiPath + '/' + resumeDbPath;
   }
 }

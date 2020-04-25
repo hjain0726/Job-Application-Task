@@ -82,6 +82,9 @@ namespace Job_Application.Migrations
                     b.Property<string>("position")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("resumeDbPath")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("startDate")
                         .HasColumnType("nvarchar(max)");
 

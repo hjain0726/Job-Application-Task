@@ -32,4 +32,9 @@ export class UserService {
     deleteUser(userId: number) {
         return this.http.delete(this.commonApiPath + '/api/Users/' + userId);
     }
+
+    // To upload resume file
+    uploadResume(fd: FormData) {
+        return this.http.post(this.commonApiPath + '/api/Users/upload', fd);
+    }
 }

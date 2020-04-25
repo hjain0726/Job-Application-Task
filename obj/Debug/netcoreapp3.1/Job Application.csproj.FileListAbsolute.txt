@@ -147,7 +147,6 @@ C:\Users\harsh\source\repos\Job Application\bin\Debug\netcoreapp3.1\runtimes\win
 C:\Users\harsh\source\repos\Job Application\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\harsh\source\repos\Job Application\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\harsh\source\repos\Job Application\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-C:\Users\harsh\source\repos\Job Application\obj\Debug\netcoreapp3.1\Job Application.csprojAssemblyReference.cache
 C:\Users\harsh\source\repos\Job Application\obj\Debug\netcoreapp3.1\staticwebassets\Job Application.StaticWebAssets.Manifest.cache
 C:\Users\harsh\source\repos\Job Application\obj\Debug\netcoreapp3.1\staticwebassets\Job Application.StaticWebAssets.xml
 C:\Users\harsh\source\repos\Job Application\obj\Debug\netcoreapp3.1\Job Application.MvcApplicationPartsAssemblyInfo.cs
@@ -159,3 +158,4 @@ C:\Users\harsh\source\repos\Job Application\obj\Debug\netcoreapp3.1\Job Applicat
 C:\Users\harsh\source\repos\Job Application\obj\Debug\netcoreapp3.1\Job Application.dll
 C:\Users\harsh\source\repos\Job Application\obj\Debug\netcoreapp3.1\Job Application.xml
 C:\Users\harsh\source\repos\Job Application\obj\Debug\netcoreapp3.1\Job Application.pdb
+C:\Users\harsh\source\repos\Job Application\obj\Debug\netcoreapp3.1\Job Application.csprojAssemblyReference.cache

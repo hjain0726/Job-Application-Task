@@ -19,7 +19,8 @@ namespace Job_Application.Migrations
                     areaCode = table.Column<int>(nullable: false),
                     phone = table.Column<string>(nullable: true),
                     position = table.Column<string>(nullable: true),
-                    startDate = table.Column<string>(nullable: true)
+                    startDate = table.Column<string>(nullable: true),
+                    resumeDbPath = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {

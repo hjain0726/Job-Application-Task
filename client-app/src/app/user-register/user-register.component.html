@@ -1,6 +1,6 @@
 <div class="container registerForm">
 
-    <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+    <form [formGroup]="registerForm" (ngSubmit)="uploadAndRegister()">
 
         <div class="form-group">
             <div class="row">
@@ -145,16 +145,30 @@
         <br>
         <div class="form-group">
             <div class="row">
-                <div class="col-lg-2"></div>
-                <div class="col-lg-1">
-                    <button type="submit" class="btn btn-primary" [disabled]="registerForm.invalid">
-                    <i *ngIf="loader" class="fa fa-spinner fa-spin"></i>Submit</button>
+                <div class="col-lg-2">
+                    <label for="Upload Resume">Upload Resume *</label>
                 </div>
-                <div class="col-lg-1">
-                    <button (click)="resetForm()" class="btn btn-success" type="button">Reset</button>
+                <div class="col-lg-3">
+                    <input type="file" formControlName="resumeFile" (change)="onFileChange($event)" 
+                    class="form-control-file">
+                    <small *ngIf="fileErrorMsg!=null" class="form-text helpmsg">{{fileErrorMsg}}</small>
                 </div>
             </div>
         </div>
+
+        <br>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-lg-2"></div>
+                <div class="col-lg-4">
+                    <button type="submit" class="btn btn-primary subBtn" [disabled]="registerForm.invalid || fileErrorMsg!=null">
+                    <i *ngIf="loader" class="fa fa-spinner fa-spin"></i>Submit</button>
+                    <button (click)="resetForm()" class="btn btn-success" type="button">Reset</button>
+                </div>
+                    
+            </div>
+        </div>
+
     </form>
 
 </div>

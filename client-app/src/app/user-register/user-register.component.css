@@ -9,7 +9,9 @@ button:disabled {
     cursor: not-allowed;
     pointer-events: all !important;
 }
-.fa {
+.subBtn{
+    margin-right: 15px;
+}
+.fa{
     margin-right: 8px;
-  }
-  
+}

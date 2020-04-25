@@ -42,6 +42,13 @@
                     <p class="card-text">ZipCode : {{user.address.zipCode}}</p>
                 </div>
             </div>
+
+            <br>
+            <div class="row">
+                <div class="col">
+                    <button class="btn btn-success vrbtn" (click)="viewResume(user.resumeDbPath)">View Resume</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>

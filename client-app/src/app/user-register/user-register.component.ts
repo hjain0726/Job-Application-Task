@@ -14,16 +14,53 @@ export class UserRegisterComponent implements OnInit {
 
   registerForm: FormGroup;
   loader: boolean = false;
+  selectedFile:File;
+  fileErrorMsg;
+
   constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
     this.createRegisterForm();
   }
 
-  // To register User
-  onRegister() {
-    this.loader = true;
+  // To get selected File
+  onFileChange(event) {
+    this.selectedFile = <File>event.target.files[0];
+    console.log(this.selectedFile);
+    this.requiredFileType();
+  }
 
+  requiredFileType() {
+    const extension=this.selectedFile.name.substring(this.selectedFile.name.lastIndexOf(".")+1)
+    if (extension != 'pdf' && extension != 'docx') {
+      this.fileErrorMsg="File should be in pdf or docx format"
+    }else if(Math.round(this.selectedFile.size / 1024)>500){
+      this.fileErrorMsg="File size should be less than or equal to 500KB"
+    }else{
+      this.fileErrorMsg=null;
+    }
+  }
+
+  // To upload resume file and call register function
+  uploadAndRegister() {
+    this.loader = true;
+    const fd = new FormData();
+    fd.append('file', this.selectedFile,this.selectedFile.name);
+
+    this.userService.uploadResume(fd).subscribe((res) => {
+      if (res['dbPath'] != null) {
+        this.registerForm.value.resumeDbPath = res['dbPath'];
+        this.registerUser();
+      }
+    }, (err) => {
+      this.loader = false;
+      console.log(err);
+      swal("Sorry!!", 'Resume Not Uploaded');
+    });
+  }
+
+  // To register User
+  registerUser() {
     if (this.registerForm.value.middleName == null) {
       this.registerForm.value.middleName = "NA";
     }
@@ -49,8 +86,9 @@ export class UserRegisterComponent implements OnInit {
   }
 
   // To reset the form
-  resetForm(){
+  resetForm() {
     this.registerForm.reset();
+    this.fileErrorMsg=null;
   }
 
   // To create Register Form
@@ -88,7 +126,9 @@ export class UserRegisterComponent implements OnInit {
         Validators.pattern('[0-9]*')
       ]),
       'position': new FormControl(null, [Validators.required]),
-      'startDate': new FormControl(null)
+      'startDate': new FormControl(null),
+      'resumeDbPath': new FormControl(null),
+      'resumeFile': new FormControl(null, [Validators.required])
     });
   }
 

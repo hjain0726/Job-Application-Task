@@ -17,5 +17,6 @@ namespace Job_Application.Models
         public string phone { get; set; }
         public string position { get; set; }
         public string startDate { get; set; }
+        public string resumeDbPath { get; set; }
     }
 }
