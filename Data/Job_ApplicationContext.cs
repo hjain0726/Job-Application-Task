@@ -16,5 +16,7 @@ namespace Job_Application.Data
 
         public DbSet<Job_Application.Models.User> User { get; set; }
         public DbSet<Job_Application.Models.Address> Address { get; set; }
+
+        
     }
 }

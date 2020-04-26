@@ -10,6 +10,7 @@ namespace Job_Application.Interfaces
     public interface IUserRepository
     {
         public Task<List<User>> GetUsers();
+        public pageResult GetUsersPerPage(page query);
         public Task<User> GetUserById(int id);
         public User GetUserByEmail(User user);
         public Task<User> PostUser(User user);

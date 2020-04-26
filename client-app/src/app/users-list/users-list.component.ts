@@ -12,11 +12,33 @@ declare var swal: any;
 export class UsersListComponent implements OnInit {
 
   Users = [];
-  loader: boolean = true;
+  loader: boolean = false;
+
+  pageNumber: number = 1;
+  pageCount: number = 2;
+  totalUsersInDb: number;
+
   constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
-    this.getUsers();
+    this.getUsersPerPage();
+  }
+
+  getUsersPerPage() {
+    this.loader = true;
+    this.userService.getUsersPerPage(this.pageNumber, this.pageCount).subscribe((res) => {
+      this.Users = res['users'];
+      this.totalUsersInDb = res['totalUsersInDb'];
+      this.loader = false;
+    }, (err) => {
+      console.log(err);
+      this.loader = false;
+    });
+  }
+
+  onPageChange(pageNumber) {
+    this.pageNumber = pageNumber;
+    this.getUsersPerPage();
   }
 
   getUsers() {
@@ -49,7 +71,10 @@ export class UsersListComponent implements OnInit {
             swal(res['msg']['message'], {
               icon: "success",
             });
-            this.getUsers();
+            if (this.Users.length == 1 && this.pageNumber != 1) {
+              this.pageNumber = this.pageNumber - 1;
+            }
+            this.getUsersPerPage();
           }, (err) => {
             console.log(err);
           });
@@ -62,4 +87,5 @@ export class UsersListComponent implements OnInit {
   viewResume(resumeDbPath: string) {
     window.location.href = this.userService.commonApiPath + '/' + resumeDbPath;
   }
+
 }

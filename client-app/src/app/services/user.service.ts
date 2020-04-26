@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { ConfigService } from './config.service';
 
 @Injectable()
@@ -16,6 +16,14 @@ export class UserService {
     // To get Users
     getUsers() {
         return this.http.get(this.commonApiPath + '/api/Users');
+    }
+
+    // To get user per page
+    getUsersPerPage(pageNumber, pageCount) {
+        let params = new HttpParams();
+        params = params.append('pageNumber', pageNumber);
+        params = params.append('pageCount', pageCount);
+        return this.http.get(this.commonApiPath + '/api/Users/userPerPage', { params: params })
     }
 
     // To register User

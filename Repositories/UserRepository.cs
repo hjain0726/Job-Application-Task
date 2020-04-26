@@ -29,6 +29,25 @@ namespace Job_Application.Repositories
             return userList;
         }
 
+        // To get users per page
+        public pageResult GetUsersPerPage(page query)
+        {
+            var result = new pageResult();
+            result.totalUsersInDb = _context.User.Count();
+            if (query.pageNumber <= 0 || query.pageCount<=0)
+            {
+                return result;
+            }
+            var userList =_context.User.Skip(query.pageCount * (query.pageNumber - 1)).Take(query.pageCount).ToList();
+            foreach (User user in userList)
+            {
+                user.address = _context.Address.FirstOrDefault(a => a.Userid == user.id);
+            }
+            result.users = userList;
+            return result;
+        }
+
+
         // To get User By Id
         public async Task<User> GetUserById(int id)
         {
@@ -79,5 +98,7 @@ namespace Job_Application.Repositories
         {
             return _context.User.Any(e => e.id == id);
         }
+
+        
     }
 }

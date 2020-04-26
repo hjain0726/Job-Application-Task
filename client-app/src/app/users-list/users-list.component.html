@@ -9,12 +9,13 @@
 </div>
 
 <div class="container" *ngIf="Users.length>0">
-    <div class="card userlist" *ngFor="let user of Users; let i=index">
+    <div class="card userlist" *ngFor="let user of Users | paginate: { itemsPerPage: pageCount , currentPage: pageNumber,totalItems: totalUsersInDb};
+     let i=index">
         <div class="card-header">
             <div class="row">
                 <div class="col-lg-2">
-                    <h5>Sno. {{i+1}}</h5>
-                </div>
+                    <h5>Sno. {{(pageNumber - 1) * pageCount + i + 1}}</h5>
+                </div> 
                 <div class="col-lg-10">
                     <button class="btn btn-success ed" (click)="deleteUser(user.id)"><i class="fa fa-trash"></i></button>
                     <button class="btn btn-primary ed editbtn" (click)="editUserDetail(user)"><i class="fa fa-pencil"></i></button>
@@ -50,5 +51,9 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <div id="pagediv">
+        <pagination-controls (pageChange)="onPageChange($event)"></pagination-controls>
     </div>
 </div>

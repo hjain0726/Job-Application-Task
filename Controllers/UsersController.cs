@@ -19,11 +19,13 @@ namespace Job_Application.Controllers
     public class UsersController : ControllerBase
     {
         private readonly IUserRepository _IUserRepository;
+        private readonly Job_ApplicationContext _context;
 
-        public UsersController(IUserRepository IUserRepository
-)
+
+        public UsersController(IUserRepository IUserRepository, Job_ApplicationContext context)
         {
             _IUserRepository = IUserRepository;
+            _context = context;
         }
 
         // GET: api/Users
@@ -31,6 +33,14 @@ namespace Job_Application.Controllers
         public async Task<ActionResult<IEnumerable<User>>> GetUser()
         {
             return await _IUserRepository.GetUsers();
+        }
+
+        // GET: api/Users/userPerPage?pageNumber=1&pageCount=1
+        [Route("userPerPage")]
+        [HttpGet]
+        public pageResult GetUserPerPage([FromQuery] page query)
+        {
+            return _IUserRepository.GetUsersPerPage(query); 
         }
 
         // GET: api/Users/5
@@ -70,6 +80,42 @@ namespace Job_Application.Controllers
                 }));
             }
 
+        }
+
+        // Post: api/Users/upload
+        [Route("upload")]
+        [HttpPost, DisableRequestSizeLimit]
+        public IActionResult Upload()
+        {
+            try
+            {
+                var file = Request.Form.Files[0];
+                var folderName = Path.Combine("Resources", "Uploads");
+                var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
+
+                if (file.Length > 0)
+                {
+                    var fileName = DateTime.Now.ToString("yyyy’-‘MM’-‘dd’T’HH’:’mm’:’ss") +
+                       ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
+                    var fullPath = Path.Combine(pathToSave, fileName);
+                    var dbPath = Path.Combine(folderName, fileName);
+
+                    using (var stream = new FileStream(fullPath, FileMode.Create))
+                    {
+                        file.CopyTo(stream);
+                    }
+
+                    return Ok(new { dbPath });
+                }
+                else
+                {
+                    return BadRequest();
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex}");
+            }
         }
 
         // PUT: api/Users/5
@@ -125,42 +171,6 @@ namespace Job_Application.Controllers
         private bool UserExists(int id)
         {
             return _IUserRepository.UserExists(id);
-        }
-
-        // To upload Resume file
-        [Route("upload")]
-        [HttpPost, DisableRequestSizeLimit]
-        public IActionResult Upload()
-        {
-            try
-            {
-                var file = Request.Form.Files[0];
-                var folderName = Path.Combine("Resources", "Uploads");
-                var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
-
-                if (file.Length > 0)
-                {
-                    var fileName = DateTime.Now.ToString("yyyy’-‘MM’-‘dd’T’HH’:’mm’:’ss")+
-                       ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
-                    var fullPath = Path.Combine(pathToSave, fileName);
-                    var dbPath = Path.Combine(folderName, fileName);
-
-                    using (var stream = new FileStream(fullPath, FileMode.Create))
-                    {
-                        file.CopyTo(stream);
-                    }
-
-                    return Ok(new { dbPath });
-                }
-                else
-                {
-                    return BadRequest();
-                }
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, $"Internal server error: {ex}");
-            }
         }
     }
 }

@@ -20,6 +20,11 @@
   float: right;
 }
 
+#pagediv{
+text-align: center;
+margin-bottom: 5%;
+}
+
 .lds-facebook {
     display: inline-block;
     position: relative;
