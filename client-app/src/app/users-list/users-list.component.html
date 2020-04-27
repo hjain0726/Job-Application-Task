@@ -9,8 +9,11 @@
 </div>
 
 <div class="container" *ngIf="Users.length>0">
-    <div class="card userlist" *ngFor="let user of Users | paginate: { itemsPerPage: pageCount , currentPage: pageNumber,totalItems: totalUsersInDb};
-     let i=index">
+
+    <input class="form-control mr-sm-2 srchinp" [(ngModel)]="searchText" placeholder="Filter By Firstname">
+
+    <div class="card userlist" *ngFor="let user of Users | paginate: { itemsPerPage: pageCount , currentPage: pageNumber,totalItems: totalUsersInDb}
+        |filter:searchText; let i=index">
         <div class="card-header">
             <div class="row">
                 <div class="col-lg-2">

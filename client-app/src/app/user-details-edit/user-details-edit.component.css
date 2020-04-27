@@ -11,4 +11,10 @@ button:disabled {
 }
 .fa-spinner {
     margin-right: 8px;
-  }
+}
+
+#topdiv{
+    margin-top: 5%;
+    text-align: center;
+    margin-bottom: 5%;
+}

@@ -12,6 +12,14 @@ button:disabled {
 .subBtn{
     margin-right: 15px;
 }
+#topdiv{
+    margin-top: 5%;
+    text-align: center;
+    margin-bottom: 5%;
+}
+#pc{
+    color: grey;
+}
 .fa{
     margin-right: 8px;
 }

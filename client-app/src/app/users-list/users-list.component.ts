@@ -13,7 +13,7 @@ export class UsersListComponent implements OnInit {
 
   Users = [];
   loader: boolean = false;
-
+  searchText:string;
   pageNumber: number = 1;
   pageCount: number = 2;
   totalUsersInDb: number;
