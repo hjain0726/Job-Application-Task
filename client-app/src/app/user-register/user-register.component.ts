@@ -14,7 +14,7 @@ export class UserRegisterComponent implements OnInit {
 
   registerForm: FormGroup;
   loader: boolean = false;
-  selectedFile:File;
+  selectedFile: File;
   fileErrorMsg;
 
   constructor(private userService: UserService, private router: Router) { }
@@ -31,13 +31,13 @@ export class UserRegisterComponent implements OnInit {
   }
 
   requiredFileType() {
-    const extension=this.selectedFile.name.substring(this.selectedFile.name.lastIndexOf(".")+1)
+    const extension = this.selectedFile.name.substring(this.selectedFile.name.lastIndexOf(".") + 1)
     if (extension != 'pdf' && extension != 'docx') {
-      this.fileErrorMsg="File should be in pdf or docx format"
-    }else if(Math.round(this.selectedFile.size / 1024)>500){
-      this.fileErrorMsg="File size should be less than or equal to 500KB"
-    }else{
-      this.fileErrorMsg=null;
+      this.fileErrorMsg = "File should be in pdf or docx format"
+    } else if (Math.round(this.selectedFile.size / 1024) > 500) {
+      this.fileErrorMsg = "File size should be less than or equal to 500KB"
+    } else {
+      this.fileErrorMsg = null;
     }
   }
 
@@ -45,8 +45,7 @@ export class UserRegisterComponent implements OnInit {
   uploadAndRegister() {
     this.loader = true;
     const fd = new FormData();
-    fd.append('file', this.selectedFile,this.selectedFile.name);
-
+    fd.append('file', this.selectedFile, this.selectedFile.name);
     this.userService.uploadResume(fd).subscribe((res) => {
       if (res['dbPath'] != null) {
         this.registerForm.value.resumeDbPath = res['dbPath'];
@@ -61,16 +60,16 @@ export class UserRegisterComponent implements OnInit {
 
   // To register User
   registerUser() {
-    if (this.registerForm.value.middleName == null) {
+
+    this.userService.currentPage = 1;
+
+    if (this.registerForm.value.middleName == "") {
       this.registerForm.value.middleName = "NA";
     }
-    if (this.registerForm.value.startDate == null) {
+    if (this.registerForm.value.startDate == "") {
       this.registerForm.value.startDate = "NA";
     }
-    if (this.registerForm.value.address.addrLine2 == null) {
-      this.registerForm.value.address.addrLine2 = "NA";
-    }
-
+    
     this.userService.registerUser(this.registerForm.value).subscribe((res) => {
       this.loader = false;
       if (res['msg']['success']) {
@@ -88,7 +87,7 @@ export class UserRegisterComponent implements OnInit {
   // To reset the form
   resetForm() {
     this.registerForm.reset();
-    this.fileErrorMsg=null;
+    this.fileErrorMsg = null;
   }
 
   // To create Register Form
@@ -100,12 +99,13 @@ export class UserRegisterComponent implements OnInit {
 
       'address': new FormGroup({
         'addrLine1': new FormControl(null, [Validators.required]),
-        'addrLine2': new FormControl(null),
+        'addrLine2': new FormControl(null, [Validators.required]),
         'city': new FormControl(null, [Validators.required, Validators.pattern('[a-zA-Z ]*')]),
         'state': new FormControl(null, [Validators.required, Validators.pattern('[a-zA-Z ]*')]),
         'zipCode': new FormControl(null, [
           Validators.required,
           Validators.minLength(5),
+          Validators.maxLength(8)
         ]),
         'country': new FormControl(null, [Validators.required])
       }),
@@ -114,11 +114,7 @@ export class UserRegisterComponent implements OnInit {
         Validators.required,
         Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')
       ]),
-      'areaCode': new FormControl(null, [
-        Validators.required,
-        Validators.min(100),
-        Validators.max(999)
-      ]),
+      'countryCode': new FormControl(null, [Validators.required]),
       'phone': new FormControl(null, [
         Validators.required,
         Validators.minLength(10),

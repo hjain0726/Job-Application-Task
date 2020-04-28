@@ -8,6 +8,7 @@ export class UserService {
 
     commonApiPath: string = this.configService.commonApiPath;
     userDetailsToBeEdit;
+    currentPage: number = 1;
 
     constructor(private http: HttpClient, private configService: ConfigService) {
 

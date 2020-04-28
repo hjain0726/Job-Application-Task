@@ -16,7 +16,7 @@ namespace Job_Application.Migrations
                     middleName = table.Column<string>(nullable: true),
                     lastName = table.Column<string>(nullable: true),
                     email = table.Column<string>(nullable: true),
-                    areaCode = table.Column<int>(nullable: false),
+                    countryCode = table.Column<string>(nullable: true),
                     phone = table.Column<string>(nullable: true),
                     position = table.Column<string>(nullable: true),
                     startDate = table.Column<string>(nullable: true),

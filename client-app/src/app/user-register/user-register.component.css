@@ -23,3 +23,6 @@ button:disabled {
 .fa{
     margin-right: 8px;
 }
+.mandatory{
+    color: red;
+}

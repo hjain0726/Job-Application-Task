@@ -64,6 +64,10 @@ namespace Job_Application.Controllers
             var userobj = _IUserRepository.GetUserByEmail(user);
             if (userobj != null)
             {
+                if ((System.IO.File.Exists(user.resumeDbPath)))
+                {
+                    System.IO.File.Delete(user.resumeDbPath);
+                }
                 return Ok(new ApiResponse(new
                 {
                     Success = false,

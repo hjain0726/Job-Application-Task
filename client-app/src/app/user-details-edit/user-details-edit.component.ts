@@ -23,14 +23,11 @@ export class UserDetailsEditComponent implements OnInit {
 
   onEdit() {
     this.loader=true;
-    if(this.userDetailsEditForm.value.middleName==null){
+    if(this.userDetailsEditForm.value.middleName==""){
       this.userDetailsEditForm.value.middleName="NA";
     }
-    if(this.userDetailsEditForm.value.startDate==null){
+    if(this.userDetailsEditForm.value.startDate==""){
       this.userDetailsEditForm.value.startDate="NA";
-    }
-    if(this.userDetailsEditForm.value.address.addrLine2==null){
-      this.userDetailsEditForm.value.address.addrLine2="NA";
     }
 
     let userId = this.userService.userDetailsToBeEdit.id;
@@ -54,12 +51,13 @@ export class UserDetailsEditComponent implements OnInit {
       'address': new FormGroup({
         'id': new FormControl(null),
         'addrLine1': new FormControl(null, [Validators.required]),
-        'addrLine2': new FormControl(null),
+        'addrLine2': new FormControl(null,[Validators.required]),
         'city': new FormControl(null, [Validators.required, Validators.pattern('[a-zA-Z ]*')]),
         'state': new FormControl(null, [Validators.required, Validators.pattern('[a-zA-Z ]*')]),
         'zipCode': new FormControl(null, [
           Validators.required,
           Validators.minLength(5),
+          Validators.maxLength(8)
         ]),
         'country': new FormControl(null, [Validators.required])
       }),
@@ -68,11 +66,7 @@ export class UserDetailsEditComponent implements OnInit {
         Validators.required,
         Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')
       ]),
-      'areaCode': new FormControl(null, [
-        Validators.required,
-        Validators.min(100),
-        Validators.max(999)
-      ]),
+      'countryCode': new FormControl(null, [Validators.required]),
       'phone': new FormControl(null, [
         Validators.required,
         Validators.minLength(10),
@@ -80,7 +74,8 @@ export class UserDetailsEditComponent implements OnInit {
         Validators.pattern('[0-9]*')
       ]),
       'position': new FormControl(null, [Validators.required]),
-      'startDate': new FormControl(null)
+      'startDate': new FormControl(null),
+      'resumeDbPath': new FormControl(null)
     });
   }
 

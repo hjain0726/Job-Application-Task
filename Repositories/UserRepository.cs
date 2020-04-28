@@ -1,6 +1,7 @@
 ﻿using Job_Application.Data;
 using Job_Application.Interfaces;
 using Job_Application.Models;
+using Job_Application.Helpers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -88,6 +89,10 @@ namespace Job_Application.Repositories
         // To delete user
         public async Task<User> DeleteUser(User user)
         {
+            if ((System.IO.File.Exists(user.resumeDbPath)))
+            {
+                System.IO.File.Delete(user.resumeDbPath);
+            }
             _context.User.Remove(user);
             await _context.SaveChangesAsync();
             return user;

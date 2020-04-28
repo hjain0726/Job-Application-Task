@@ -14,13 +14,14 @@ export class UsersListComponent implements OnInit {
   Users = [];
   loader: boolean = false;
   searchText:string;
-  pageNumber: number = 1;
+  pageNumber: number;
   pageCount: number = 2;
   totalUsersInDb: number;
 
   constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
+    this.pageNumber=this.userService.currentPage;
     this.getUsersPerPage();
   }
 
@@ -53,6 +54,7 @@ export class UsersListComponent implements OnInit {
   }
 
   editUserDetail(user: Object) {
+    this.userService.currentPage=this.pageNumber;
     this.userService.userDetailsToBeEdit = user;
     this.router.navigate(['/editUserDetail'])
   }

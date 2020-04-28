@@ -1,4 +1,5 @@
 ﻿using Job_Application.Models;
+using Job_Application.Helpers;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;

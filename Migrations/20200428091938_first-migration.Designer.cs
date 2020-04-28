@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Job_Application.Migrations
 {
     [DbContext(typeof(Job_ApplicationContext))]
-    [Migration("20200425094034_first-migration")]
+    [Migration("20200428091938_first-migration")]
     partial class firstmigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -63,8 +63,8 @@ namespace Job_Application.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("areaCode")
-                        .HasColumnType("int");
+                    b.Property<string>("countryCode")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("email")
                         .HasColumnType("nvarchar(max)");

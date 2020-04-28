@@ -11,7 +11,7 @@
         <div class="form-group">
             <div class="row">
                 <div class="col-lg-2">
-                    <label for="Full Name">Full Name *</label>
+                    <label for="Full Name">Full Name <span class="mandatory">*</span></label>
                 </div>
                 <div class="col-lg-3">
                     <input type="text" formControlName="firstName" class="form-control" placeholder="First Name">
@@ -34,18 +34,20 @@
         <div formGroupName="address" class="form-group">
             <div class="row">
                 <div class="col-lg-2">
-                    <label for="Current Address">Current Address *</label>
+                    <label for="Current Address">Current Address <span class="mandatory">*</span></label>
                 </div>
                 <div class="col-lg-9">
                     <div class="row-lg-9 form-group">
                         <input type="text" formControlName="addrLine1" class="form-control"
-                            placeholder="Street Address">
+                            placeholder="Flat, House no., Building, Company, Apartment">
                         <small *ngIf="!registerForm.get('address.addrLine1').valid && registerForm.get('address.addrLine1').touched"
-                        class="form-text helpmsg">Address required</small>    
+                        class="form-text helpmsg">Required</small>    
                     </div>
                     <div class="row-lg-9 form-group">
                         <input type="text" formControlName="addrLine2" class="form-control"
-                            placeholder="Street Address Line 2">
+                            placeholder="Area, Colony, Street, Sector, Village">
+                        <small *ngIf="!registerForm.get('address.addrLine2').valid && registerForm.get('address.addrLine2').touched"
+                        class="form-text helpmsg">Required</small>   
                     </div>
                     <div class="row form-group">
                         <div class="col-lg-6">
@@ -85,7 +87,7 @@
         <div class="form-group">
             <div class="row">
                 <div class="col-lg-2">
-                    <label for="Email Address">Email Address *</label>
+                    <label for="Email Address">Email Address <span class="mandatory">*</span></label>
                 </div>
                 <div class="col-lg-9">
                     <input type="email" formControlName="email" class="form-control"
@@ -99,20 +101,25 @@
         <div class="form-group">
             <div class="row">
                 <div class="col-lg-2">
-                    <label for="Phone Number">Phone Number *</label>
+                    <label for="Mobile Number">Mobile Number <span class="mandatory">*</span></label>
                 </div>
                 <div class="col-lg-2">
-                    <input type="number" formControlName="areaCode" class="form-control" placeholder="Area Code">
-                    <small *ngIf="!registerForm.get('areaCode').valid && registerForm.get('areaCode').touched"
-                    class="form-text helpmsg">Valid area code required</small>
+                    <select formControlName="countryCode" class="form-control">
+                        <option [ngValue]="null" [selected]=true [disabled]="true">Country Code</option>
+                        <option [ngValue]="'+91'">+91</option>
+                        <option [ngValue]="'+1'">+1</option>
+                        <option [ngValue]="'+44'">+44</option>
+                    </select>
+                    <small *ngIf="!registerForm.get('countryCode').valid && registerForm.get('countryCode').touched"
+                    class="form-text helpmsg">Country code required</small>
                 </div>
                 <div class="col-lg-0">
                     <p>-</p>
                 </div>
                 <div class="col-lg-3">
-                    <input type="text" formControlName="phone" class="form-control" placeholder="Phone Number">
+                    <input type="text" formControlName="phone" class="form-control" placeholder="Mobile number">
                     <small *ngIf="!registerForm.get('phone').valid && registerForm.get('phone').touched"
-                    class="form-text helpmsg">Valid phone number required</small>
+                    class="form-text helpmsg">10 digit mobile number required</small>
                 </div>
             </div>
         </div>
@@ -120,7 +127,7 @@
         <div class="form-group">
             <div class="row">
                 <div class="col-lg-2">
-                    <label for="Position">Applying For Position *</label>
+                    <label for="Position">Applying For Position <span class="mandatory">*</span></label>
                 </div>
                 <div class="col-lg-5">
                     <select formControlName="position" class="form-control">
@@ -152,7 +159,7 @@
         <div class="form-group">
             <div class="row">
                 <div class="col-lg-2">
-                    <label for="Upload Resume">Upload Resume *</label>
+                    <label for="Upload Resume">Upload Resume <span class="mandatory">*</span></label>
                 </div>
                 <div class="col-lg-3">
                     <input type="file" formControlName="resumeFile" (change)="onFileChange($event)" 

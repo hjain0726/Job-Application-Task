@@ -13,7 +13,7 @@ namespace Job_Application.Models
         public string lastName { get; set; }
         public Address address { get; set; }
         public string email { get; set; }
-        public int areaCode { get; set; }
+        public string countryCode { get; set; }
         public string phone { get; set; }
         public string position { get; set; }
         public string startDate { get; set; }
