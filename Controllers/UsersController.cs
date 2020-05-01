@@ -19,13 +19,10 @@ namespace Job_Application.Controllers
     public class UsersController : ControllerBase
     {
         private readonly IUserRepository _IUserRepository;
-        private readonly Job_ApplicationContext _context;
 
-
-        public UsersController(IUserRepository IUserRepository, Job_ApplicationContext context)
+        public UsersController(IUserRepository IUserRepository)
         {
             _IUserRepository = IUserRepository;
-            _context = context;
         }
 
         // GET: api/Users
@@ -61,9 +58,12 @@ namespace Job_Application.Controllers
         [HttpPost]
         public async Task<ActionResult<User>> PostUser(User user)
         {
+            // First find user exists or not by using its email
             var userobj = _IUserRepository.GetUserByEmail(user);
+
             if (userobj != null)
             {
+                // Delete file uploaded by user
                 if ((System.IO.File.Exists(user.resumeDbPath)))
                 {
                     System.IO.File.Delete(user.resumeDbPath);
@@ -93,17 +93,28 @@ namespace Job_Application.Controllers
         {
             try
             {
+                // Get file from request
                 var file = Request.Form.Files[0];
+
+                // Folder where we want to upload file
                 var folderName = Path.Combine("Resources", "Uploads");
+
+                // Current directory path of folder
                 var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
 
                 if (file.Length > 0)
                 {
+                    // Adding date time with file name to make each file unique
                     var fileName = DateTime.Now.ToString("yyyy’-‘MM’-‘dd’T’HH’:’mm’:’ss") +
                        ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
+
+                    // Fullpath of file
                     var fullPath = Path.Combine(pathToSave, fileName);
+
+                    // dbPath i.e return to user after file upload
                     var dbPath = Path.Combine(folderName, fileName);
 
+                    // file uploading
                     using (var stream = new FileStream(fullPath, FileMode.Create))
                     {
                         file.CopyTo(stream);
@@ -159,11 +170,14 @@ namespace Job_Application.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<User>> DeleteUser(int id)
         {
+            // To check user exists or not
             var user = await _IUserRepository.GetUserById(id);
+
             if (user == null)
             {
                 return NotFound(new NotFoundError("User not found"));
             }
+
             await _IUserRepository.DeleteUser(user);
             return Ok(new ApiResponse(new
             {

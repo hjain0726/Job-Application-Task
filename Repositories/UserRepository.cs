@@ -23,10 +23,13 @@ namespace Job_Application.Repositories
         public async Task<List<User>> GetUsers()
         {
             var userList = await _context.User.ToListAsync();
+
+            // Traversing each user to get its address from address table using user id
             foreach (User user in userList)
             {
                 user.address = _context.Address.FirstOrDefault(a => a.Userid == user.id);
             }
+
             return userList;
         }
 
@@ -34,16 +37,23 @@ namespace Job_Application.Repositories
         public pageResult GetUsersPerPage(page query)
         {
             var result = new pageResult();
-            result.totalUsersInDb = _context.User.Count();
+
+            result.totalUsersInDb = _context.User.Count(); // No. of users in User table
+
             if (query.pageNumber <= 0 || query.pageCount<=0)
             {
-                return result;
+                return result; // returns empty object
             }
+
+            // To skip and take records from user table on basis of query
             var userList =_context.User.Skip(query.pageCount * (query.pageNumber - 1)).Take(query.pageCount).ToList();
+
+            // Traversing each user to get its address from address table on basis of user id
             foreach (User user in userList)
             {
                 user.address = _context.Address.FirstOrDefault(a => a.Userid == user.id);
             }
+
             result.users = userList;
             return result;
         }
@@ -53,7 +63,10 @@ namespace Job_Application.Repositories
         public async Task<User> GetUserById(int id)
         {
             var user= await _context.User.FindAsync(id);
+
+            // To get address of particular user from user table
             user.address = _context.Address.FirstOrDefault(a => a.Userid == user.id);
+
             return user;
         }
 
@@ -76,7 +89,7 @@ namespace Job_Application.Repositories
         // To edit user Details
         public async Task<User> EditUser(int id, User user)
         {
-            // Edit address
+            // Edit address of user
             Address address = user.address;
             _context.Entry(address).State = EntityState.Modified;
 
@@ -89,11 +102,15 @@ namespace Job_Application.Repositories
         // To delete user
         public async Task<User> DeleteUser(User user)
         {
+            // Delete user's resume file when user is deleted
             if ((System.IO.File.Exists(user.resumeDbPath)))
             {
                 System.IO.File.Delete(user.resumeDbPath);
             }
+
+            //removes user from user table
             _context.User.Remove(user);
+
             await _context.SaveChangesAsync();
             return user;
         }

@@ -44,13 +44,14 @@ namespace Job_Application
 
             services.AddScoped<IUserRepository, UserRepository>();
 
-            // upload file setting
+            // upload file configure
             services.Configure<FormOptions>(o => {
                 o.ValueLengthLimit = int.MaxValue;
                 o.MultipartBodyLengthLimit = int.MaxValue;
                 o.MemoryBufferThreshold = int.MaxValue;
             });
 
+            //swagger configuration
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo
