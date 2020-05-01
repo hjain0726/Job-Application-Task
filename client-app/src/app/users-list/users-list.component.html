@@ -1,19 +1,28 @@
+<!-- loader div start-->
 <div *ngIf="loader" class="lds-facebook">
     <div></div>
     <div></div>
     <div></div>
 </div>
+<!-- loader div end-->
 
+<!-- Msg div start-->
 <div id="nouser" *ngIf="Users.length==0">
     <h5>No users to show</h5>
 </div>
+<!-- Msg div end-->
 
+<!-- container div start-->
 <div class="container" *ngIf="Users.length>0">
 
+    <!-- search input start-->
     <input class="form-control mr-sm-2 srchinp" [(ngModel)]="searchText" placeholder="Filter By Firstname">
+    <!-- search input end-->
 
-    <div class="card userlist" *ngFor="let user of Users | paginate: { itemsPerPage: pageCount , currentPage: pageNumber,totalItems: totalUsersInDb}
-        |filter:searchText; let i=index">
+    <!-- user list div start-->
+    <div class="card userlist" *ngFor="let user of Users
+         | paginate: { itemsPerPage: pageCount , currentPage: pageNumber,totalItems: totalUsersInDb}
+         | filter:searchText; let i=index">
         <div class="card-header">
             <div class="row">
                 <div class="col-lg-2">
@@ -55,8 +64,13 @@
             </div>
         </div>
     </div>
+    <!-- user list div end-->
 
+    <!-- Pagination div start-->
     <div id="pagediv">
         <pagination-controls (pageChange)="onPageChange($event)"></pagination-controls>
     </div>
+    <!-- Pagination div end-->
+
 </div>
+<!-- container div end -->

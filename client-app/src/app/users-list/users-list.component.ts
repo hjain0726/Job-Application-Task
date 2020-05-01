@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
 
+// Services Imports
+import { UserService } from '../services/user.service';
+
+// To use sweet alerts
 declare var swal: any;
 
 @Component({
@@ -13,18 +16,20 @@ export class UsersListComponent implements OnInit {
 
   Users = [];
   loader: boolean = false;
-  searchText:string;
+  searchText: string;
   pageNumber: number;
-  pageCount: number = 2;
+  pageCount: number = 2; // We want two records per page 
   totalUsersInDb: number;
 
   constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
-    this.pageNumber=this.userService.currentPage;
+    this.pageNumber = this.userService.currentPage; // to initialize page number from service current page
+    // It will get users acc. to page number
     this.getUsersPerPage();
   }
 
+  // To get users per page
   getUsersPerPage() {
     this.loader = true;
     this.userService.getUsersPerPage(this.pageNumber, this.pageCount).subscribe((res) => {
@@ -37,24 +42,29 @@ export class UsersListComponent implements OnInit {
     });
   }
 
+  // To get page number on change of page
   onPageChange(pageNumber) {
     this.pageNumber = pageNumber;
+    // calling getUsersPerPage on change of every page to get per page records
     this.getUsersPerPage();
   }
 
+  // To get All Users At once
   getUsers() {
     this.userService.getUsers().subscribe((users: []) => {
       this.Users = users;
       this.loader = false;
-      console.log(this.Users);
     }, (err) => {
       console.log(err);
       this.loader = false;
     });
   }
 
+  // To set user in service whose detail to be edit and navigate to editUserDeatil component
   editUserDetail(user: Object) {
-    this.userService.currentPage=this.pageNumber;
+    // Setting on page number because we want to be on same page where record is present after edit
+    this.userService.currentPage = this.pageNumber;
+    // Setting user in service
     this.userService.userDetailsToBeEdit = user;
     this.router.navigate(['/editUserDetail'])
   }
@@ -74,7 +84,7 @@ export class UsersListComponent implements OnInit {
               icon: "success",
             });
             if (this.Users.length == 1 && this.pageNumber != 1) {
-              this.pageNumber = this.pageNumber - 1;
+              this.pageNumber = this.pageNumber - 1; // bcz if that page have no records after delete than we go to prev page
             }
             this.getUsersPerPage();
           }, (err) => {
@@ -86,6 +96,7 @@ export class UsersListComponent implements OnInit {
       });
   }
 
+  // To get static resume file from server
   viewResume(resumeDbPath: string) {
     window.location.href = this.userService.commonApiPath + '/' + resumeDbPath;
   }

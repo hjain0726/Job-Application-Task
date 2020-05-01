@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
 
+// Services Imports
+import { UserService } from '../services/user.service';
+
+// To use sweet alerts
 declare var swal: any;
 
 @Component({
@@ -13,34 +16,43 @@ declare var swal: any;
 export class UserDetailsEditComponent implements OnInit {
 
   userDetailsEditForm: FormGroup
-  loader:boolean=false;
+  loader: boolean = false;
+
   constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
+    // To create details edit form
     this.createDetailsEditForm();
-    this.userDetailsEditForm.patchValue(this.userService.userDetailsToBeEdit);  
+    // To set Values in form
+    this.userDetailsEditForm.patchValue(this.userService.userDetailsToBeEdit);
   }
 
+  // To edit user
   onEdit() {
-    this.loader=true;
-    if(this.userDetailsEditForm.value.middleName==""){
-      this.userDetailsEditForm.value.middleName="NA";
+    this.loader = true;
+
+    // To check not required fiels are empty or not
+    if (this.userDetailsEditForm.value.middleName == "") {
+      this.userDetailsEditForm.value.middleName = "NA";
     }
-    if(this.userDetailsEditForm.value.startDate==""){
-      this.userDetailsEditForm.value.startDate="NA";
+    if (this.userDetailsEditForm.value.startDate == "") {
+      this.userDetailsEditForm.value.startDate = "NA";
     }
 
+    // Get value of user id set on click of edit button
     let userId = this.userService.userDetailsToBeEdit.id;
+    // Call service method to edit details
     this.userService.editUserDetails(userId, this.userDetailsEditForm.value).subscribe((res) => {
-      this.loader=false;
+      this.loader = false;
       this.router.navigate(['/users']);
       swal("Done", res['msg']['message'], "success");
     }, (err) => {
-      this.loader=false;
+      this.loader = false;
       console.log(err);
     });
   }
 
+  // To create DetailEditForm
   createDetailsEditForm() {
     this.userDetailsEditForm = new FormGroup({
       'id': new FormControl(null),
@@ -51,7 +63,7 @@ export class UserDetailsEditComponent implements OnInit {
       'address': new FormGroup({
         'id': new FormControl(null),
         'addrLine1': new FormControl(null, [Validators.required]),
-        'addrLine2': new FormControl(null,[Validators.required]),
+        'addrLine2': new FormControl(null, [Validators.required]),
         'city': new FormControl(null, [Validators.required, Validators.pattern('[a-zA-Z ]*')]),
         'state': new FormControl(null, [Validators.required, Validators.pattern('[a-zA-Z ]*')]),
         'zipCode': new FormControl(null, [

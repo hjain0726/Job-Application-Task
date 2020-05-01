@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
 
+// Services Imports
+import { UserService } from '../services/user.service';
+
+// To use Sweet alerts
 declare var swal: any;
 
 @Component({
@@ -20,17 +23,20 @@ export class UserRegisterComponent implements OnInit {
   constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
+    // To create register form
     this.createRegisterForm();
   }
 
   // To get selected File
   onFileChange(event) {
-    this.selectedFile = <File>event.target.files[0];
-    console.log(this.selectedFile);
+    this.selectedFile = <File>event.target.files[0]; // selected file
+    //To Check file type and size 
     this.requiredFileType();
   }
 
+  // To check file type and size
   requiredFileType() {
+    // To get file extension by finding last dot and get string after it i.e file extension
     const extension = this.selectedFile.name.substring(this.selectedFile.name.lastIndexOf(".") + 1)
     if (extension != 'pdf' && extension != 'docx') {
       this.fileErrorMsg = "File should be in pdf or docx format"
@@ -44,11 +50,15 @@ export class UserRegisterComponent implements OnInit {
   // To upload resume file and call register function
   uploadAndRegister() {
     this.loader = true;
+
     const fd = new FormData();
-    fd.append('file', this.selectedFile, this.selectedFile.name);
+    fd.append('file', this.selectedFile, this.selectedFile.name); // append file to form data
+
+    // Calling service function to upload file
     this.userService.uploadResume(fd).subscribe((res) => {
       if (res['dbPath'] != null) {
         this.registerForm.value.resumeDbPath = res['dbPath'];
+        // Call registerUser function to submit user details
         this.registerUser();
       }
     }, (err) => {
@@ -60,16 +70,18 @@ export class UserRegisterComponent implements OnInit {
 
   // To register User
   registerUser() {
-
+    // to set current page equal to one bcz after register we want to go to first page of users list
     this.userService.currentPage = 1;
 
+    // To check not required fields are empty or not
     if (this.registerForm.value.middleName == "") {
       this.registerForm.value.middleName = "NA";
     }
     if (this.registerForm.value.startDate == "") {
       this.registerForm.value.startDate = "NA";
     }
-    
+
+    // Call service function to register
     this.userService.registerUser(this.registerForm.value).subscribe((res) => {
       this.loader = false;
       if (res['msg']['success']) {
@@ -127,6 +139,5 @@ export class UserRegisterComponent implements OnInit {
       'resumeFile': new FormControl(null, [Validators.required])
     });
   }
-
 
 }

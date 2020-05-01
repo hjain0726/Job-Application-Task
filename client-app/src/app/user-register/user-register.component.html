@@ -1,13 +1,18 @@
+<!-- Container div Started-->
 <div class="container registerForm">
 
-<div id="topdiv">
-    <h3>Job Application</h3>
-    <p id="pc">Please complete the form below to apply for a position with us.</p>
-    <hr>
-</div>
+    <!-- Top Div start-->
+    <div id="topdiv">
+        <h3>Job Application</h3>
+        <p id="pc">Please complete the form below to apply for a position with us.</p>
+        <hr>
+    </div>
+    <!-- Top Div end-->
 
+    <!-- Form start-->
     <form [formGroup]="registerForm" (ngSubmit)="uploadAndRegister()">
 
+        <!-- Full name div start-->
         <div class="form-group">
             <div class="row">
                 <div class="col-lg-2">
@@ -16,21 +21,23 @@
                 <div class="col-lg-3">
                     <input type="text" formControlName="firstName" class="form-control" placeholder="First Name">
                     <small *ngIf="!registerForm.get('firstName').valid && registerForm.get('firstName').touched"
-                    class="form-text helpmsg">Valid first name required</small>
+                        class="form-text helpmsg">Valid first name required</small>
                 </div>
                 <div class="col-lg-3">
                     <input type="text" formControlName="middleName" class="form-control" placeholder="Middle Name">
                     <small *ngIf="!registerForm.get('middleName').valid && registerForm.get('middleName').touched"
-                    class="form-text helpmsg">Valid middle name required</small>
+                        class="form-text helpmsg">Valid middle name required</small>
                 </div>
                 <div class="col-lg-3">
                     <input type="text" formControlName="lastName" class="form-control" placeholder="Last Name">
                     <small *ngIf="!registerForm.get('lastName').valid && registerForm.get('lastName').touched"
-                    class="form-text helpmsg">Valid last name required</small>
+                        class="form-text helpmsg">Valid last name required</small>
                 </div>
             </div>
         </div>
+        <!-- Full name div start-->
 
+        <!-- Address Div started-->
         <div formGroupName="address" class="form-group">
             <div class="row">
                 <div class="col-lg-2">
@@ -40,50 +47,59 @@
                     <div class="row-lg-9 form-group">
                         <input type="text" formControlName="addrLine1" class="form-control"
                             placeholder="Flat, House no., Building, Company, Apartment">
-                        <small *ngIf="!registerForm.get('address.addrLine1').valid && registerForm.get('address.addrLine1').touched"
-                        class="form-text helpmsg">Required</small>    
+                        <small
+                            *ngIf="!registerForm.get('address.addrLine1').valid && registerForm.get('address.addrLine1').touched"
+                            class="form-text helpmsg">Required</small>
                     </div>
                     <div class="row-lg-9 form-group">
                         <input type="text" formControlName="addrLine2" class="form-control"
                             placeholder="Area, Colony, Street, Sector, Village">
-                        <small *ngIf="!registerForm.get('address.addrLine2').valid && registerForm.get('address.addrLine2').touched"
-                        class="form-text helpmsg">Required</small>   
+                        <small
+                            *ngIf="!registerForm.get('address.addrLine2').valid && registerForm.get('address.addrLine2').touched"
+                            class="form-text helpmsg">Required</small>
                     </div>
                     <div class="row form-group">
                         <div class="col-lg-6">
                             <input type="text" formControlName="city" class="form-control" placeholder="City">
-                            <small *ngIf="!registerForm.get('address.city').valid && registerForm.get('address.city').touched"
-                            class="form-text helpmsg">Valid city required</small>
+                            <small
+                                *ngIf="!registerForm.get('address.city').valid && registerForm.get('address.city').touched"
+                                class="form-text helpmsg">Valid city required</small>
                         </div>
                         <div class="col-lg-6">
                             <input type="text" formControlName="state" class="form-control"
                                 placeholder="State / Province">
-                            <small *ngIf="!registerForm.get('address.state').valid && registerForm.get('address.state').touched"
-                            class="form-text helpmsg">Valid state/province required</small>    
+                            <small
+                                *ngIf="!registerForm.get('address.state').valid && registerForm.get('address.state').touched"
+                                class="form-text helpmsg">Valid state/province required</small>
                         </div>
                     </div>
                     <div class="row form-group">
                         <div class="col-lg-6">
                             <input type="text" formControlName="zipCode" class="form-control"
                                 placeholder="Postal / Zip Code">
-                            <small *ngIf="!registerForm.get('address.zipCode').valid && registerForm.get('address.zipCode').touched"
-                            class="form-text helpmsg">Valid zipcode required</small>    
+                            <small
+                                *ngIf="!registerForm.get('address.zipCode').valid && registerForm.get('address.zipCode').touched"
+                                class="form-text helpmsg">Valid zipcode required</small>
                         </div>
                         <div class="col-lg-6">
                             <select formControlName="country" class="form-control">
-                                <option [ngValue]="null" [selected]=true [disabled]="true">Please Select Country</option>
+                                <option [ngValue]="null" [selected]=true [disabled]="true">Please Select Country
+                                </option>
                                 <option [ngValue]="'India'">India</option>
                                 <option [ngValue]="'USA'">USA</option>
                                 <option [ngValue]="'UK'">UK</option>
                             </select>
-                            <small *ngIf="!registerForm.get('address.country').valid && registerForm.get('address.country').touched"
-                            class="form-text helpmsg">Country required</small>
+                            <small
+                                *ngIf="!registerForm.get('address.country').valid && registerForm.get('address.country').touched"
+                                class="form-text helpmsg">Country required</small>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <!-- Address Div ended-->
 
+        <!-- Email add. div start-->
         <div class="form-group">
             <div class="row">
                 <div class="col-lg-2">
@@ -93,11 +109,13 @@
                     <input type="email" formControlName="email" class="form-control"
                         placeholder="Enter your email address">
                     <small *ngIf="!registerForm.get('email').valid && registerForm.get('email').touched"
-                    class="form-text helpmsg">Valid email required</small>    
+                        class="form-text helpmsg">Valid email required</small>
                 </div>
             </div>
         </div>
+        <!-- Email add. div end-->
 
+        <!-- Mobile number div start-->
         <div class="form-group">
             <div class="row">
                 <div class="col-lg-2">
@@ -111,7 +129,7 @@
                         <option [ngValue]="'+44'">+44</option>
                     </select>
                     <small *ngIf="!registerForm.get('countryCode').valid && registerForm.get('countryCode').touched"
-                    class="form-text helpmsg">Country code required</small>
+                        class="form-text helpmsg">Country code required</small>
                 </div>
                 <div class="col-lg-0">
                     <p>-</p>
@@ -119,11 +137,13 @@
                 <div class="col-lg-3">
                     <input type="text" formControlName="phone" class="form-control" placeholder="Mobile number">
                     <small *ngIf="!registerForm.get('phone').valid && registerForm.get('phone').touched"
-                    class="form-text helpmsg">10 digit mobile number required</small>
+                        class="form-text helpmsg">10 digit mobile number required</small>
                 </div>
             </div>
         </div>
+        <!-- Mobile number div end-->
 
+        <!-- Position div start-->
         <div class="form-group">
             <div class="row">
                 <div class="col-lg-2">
@@ -139,11 +159,13 @@
                         <option [ngValue]="'HR'">HR</option>
                     </select>
                     <small *ngIf="!registerForm.get('position').valid && registerForm.get('position').touched"
-                    class="form-text helpmsg">Valid position required</small>
+                        class="form-text helpmsg">Valid position required</small>
                 </div>
             </div>
         </div>
+        <!-- Position div end-->
 
+        <!-- start date div start-->
         <div class="form-group">
             <div class="row">
                 <div class="col-lg-2">
@@ -154,34 +176,41 @@
                 </div>
             </div>
         </div>
-
+        <!-- start date div end-->
         <br>
+
+        <!-- upload file duv start-->
         <div class="form-group">
             <div class="row">
                 <div class="col-lg-2">
                     <label for="Upload Resume">Upload Resume <span class="mandatory">*</span></label>
                 </div>
                 <div class="col-lg-3">
-                    <input type="file" formControlName="resumeFile" (change)="onFileChange($event)" 
-                    class="form-control-file">
+                    <input type="file" formControlName="resumeFile" (change)="onFileChange($event)"
+                        class="form-control-file">
                     <small *ngIf="fileErrorMsg!=null" class="form-text helpmsg">{{fileErrorMsg}}</small>
                 </div>
             </div>
         </div>
-
+        <!-- upload file div end-->
         <br>
+
+        <!-- submit btn div start-->
         <div class="form-group">
             <div class="row">
                 <div class="col-lg-2"></div>
                 <div class="col-lg-4">
-                    <button type="submit" class="btn btn-primary subBtn" [disabled]="registerForm.invalid || fileErrorMsg!=null">
-                    <i *ngIf="loader" class="fa fa-spinner fa-spin"></i>Submit</button>
+                    <button type="submit" class="btn btn-primary subBtn"
+                        [disabled]="registerForm.invalid || fileErrorMsg!=null">
+                        <i *ngIf="loader" class="fa fa-spinner fa-spin"></i>Submit</button>
                     <button (click)="resetForm()" class="btn btn-success" type="button">Reset</button>
                 </div>
-                    
+
             </div>
         </div>
+        <!-- submit btn div end-->
 
     </form>
-
+    <!-- Form end-->
 </div>
+<!-- Container div ended-->
