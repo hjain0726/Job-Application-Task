@@ -32,10 +32,10 @@ export class UserDetailsEditComponent implements OnInit {
     this.loader = true;
 
     // To check not required fiels are empty or not
-    if (this.userDetailsEditForm.value.middleName == "") {
+    if (this.userDetailsEditForm.value.middleName == null) {
       this.userDetailsEditForm.value.middleName = "NA";
     }
-    if (this.userDetailsEditForm.value.startDate == "") {
+    if (this.userDetailsEditForm.value.startDate == null) {
       this.userDetailsEditForm.value.startDate = "NA";
     }
 

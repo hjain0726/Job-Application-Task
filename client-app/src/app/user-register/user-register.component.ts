@@ -74,10 +74,10 @@ export class UserRegisterComponent implements OnInit {
     this.userService.currentPage = 1;
 
     // To check not required fields are empty or not
-    if (this.registerForm.value.middleName == "") {
+    if (this.registerForm.value.middleName == null) {
       this.registerForm.value.middleName = "NA";
     }
-    if (this.registerForm.value.startDate == "") {
+    if (this.registerForm.value.startDate == null) {
       this.registerForm.value.startDate = "NA";
     }
 
