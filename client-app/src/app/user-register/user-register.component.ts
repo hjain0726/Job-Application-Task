@@ -18,7 +18,7 @@ export class UserRegisterComponent implements OnInit {
   registerForm: FormGroup;
   loader: boolean = false;
   selectedFile: File;
-  fileErrorMsg;
+  fileErrorMsg: string;
 
   constructor(private userService: UserService, private router: Router) { }
 

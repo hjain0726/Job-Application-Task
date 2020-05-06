@@ -4,6 +4,9 @@ import { Router } from '@angular/router';
 // Services Imports
 import { UserService } from '../services/user.service';
 
+// Model imports
+import { User } from '../models/user.model';
+
 // To use sweet alerts
 declare var swal: any;
 
@@ -14,7 +17,7 @@ declare var swal: any;
 })
 export class UsersListComponent implements OnInit {
 
-  Users = [];
+  Users: User[] = [];
   loader: boolean = false;
   searchText: string;
   pageNumber: number;
@@ -43,7 +46,7 @@ export class UsersListComponent implements OnInit {
   }
 
   // To get page number on change of page
-  onPageChange(pageNumber) {
+  onPageChange(pageNumber: number) {
     this.pageNumber = pageNumber;
     // calling getUsersPerPage on change of every page to get per page records
     this.getUsersPerPage();
@@ -51,7 +54,7 @@ export class UsersListComponent implements OnInit {
 
   // To get All Users At once
   getUsers() {
-    this.userService.getUsers().subscribe((users: []) => {
+    this.userService.getUsers().subscribe((users: User[]) => {
       this.Users = users;
       this.loader = false;
     }, (err) => {
@@ -61,7 +64,7 @@ export class UsersListComponent implements OnInit {
   }
 
   // To set user in service whose detail to be edit and navigate to editUserDeatil component
-  editUserDetail(user: Object) {
+  editUserDetail(user: User) {
     // Setting on page number because we want to be on same page where record is present after edit
     this.userService.currentPage = this.pageNumber;
     // Setting user in service

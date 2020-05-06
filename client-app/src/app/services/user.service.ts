@@ -1,15 +1,18 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
+
+// Services imports
 import { ConfigService } from './config.service';
-import { Observable } from 'rxjs';
+
+// Model import
+import { User } from '../models/user.model';
 
 @Injectable()
 
 export class UserService {
 
     commonApiPath: string = this.configService.commonApiPath;
-
-    userDetailsToBeEdit;
+    userDetailsToBeEdit: User;
     currentPage: number = 1;
 
     constructor(private http: HttpClient, private configService: ConfigService) {
@@ -23,7 +26,7 @@ export class UserService {
 
     // To get users per page
     getUsersPerPage(pageNumber, pageCount) {
-        
+
         // Setting query params
         let params = new HttpParams();
         params = params.append('pageNumber', pageNumber);
@@ -43,7 +46,7 @@ export class UserService {
     }
 
     // To edit user details
-    editUserDetails(userId: number, userobj: Object) {
+    editUserDetails(userId: number, userobj: User) {
         return this.http.put(this.commonApiPath + '/api/Users/' + userId, userobj);
     }
 
