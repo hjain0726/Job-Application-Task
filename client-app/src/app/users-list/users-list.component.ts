@@ -74,7 +74,7 @@ export class UsersListComponent implements OnInit {
       title: "Are you sure?",
       text: "Once deleted, you will not be able to recover this record!",
       icon: "warning",
-      buttons: true,
+      buttons: [true, true],
       dangerMode: true,
     })
       .then((willDelete) => {

@@ -158,3 +158,4 @@ C:\Users\harsh\source\repos\Job Application\obj\Debug\netcoreapp3.1\Job Applicat
 C:\Users\harsh\source\repos\Job Application\obj\Debug\netcoreapp3.1\Job Application.dll
 C:\Users\harsh\source\repos\Job Application\obj\Debug\netcoreapp3.1\Job Application.xml
 C:\Users\harsh\source\repos\Job Application\obj\Debug\netcoreapp3.1\Job Application.pdb
+C:\Users\harsh\source\repos\Job Application\obj\Debug\netcoreapp3.1\Job Application.csprojAssemblyReference.cache

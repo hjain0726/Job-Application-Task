@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 // Services Imports
 import { UserService } from '../services/user.service';
 
-// To use Sweet alerts
+// To use sweet alerts
 declare var swal: any;
 
 @Component({
