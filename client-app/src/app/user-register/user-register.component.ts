@@ -64,7 +64,7 @@ export class UserRegisterComponent implements OnInit {
     }, (err) => {
       this.loader = false;
       console.log(err);
-      swal("Sorry!!", 'Resume Not Uploaded');
+      swal("Sorry!!", ' An Error Occured Resume Not Uploaded');
     });
   }
 
@@ -86,13 +86,14 @@ export class UserRegisterComponent implements OnInit {
       this.loader = false;
       if (res['msg']['success']) {
         this.router.navigate(['/users'])
-        swal("Done", res['msg']['message'], "success");
+        swal("Done", res['msg']['message'], "success"); // Successfully register
       } else if (!res['msg']['success']) {
-        swal("Sorry!!", res['msg']['message']);
+        swal("Sorry!!", res['msg']['message']); // User already Exists
       }
     }, (err) => {
       this.loader = false;
       console.log(err);
+      swal("Sorry!!", 'Internal Server Error');
     });
   }
 

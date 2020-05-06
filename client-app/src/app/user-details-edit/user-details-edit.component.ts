@@ -49,6 +49,7 @@ export class UserDetailsEditComponent implements OnInit {
     }, (err) => {
       this.loader = false;
       console.log(err);
+      swal("Sorry!!", 'Internal Server Error');
     });
   }
 

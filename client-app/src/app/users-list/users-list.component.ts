@@ -42,6 +42,7 @@ export class UsersListComponent implements OnInit {
     }, (err) => {
       console.log(err);
       this.loader = false;
+      swal("Sorry!!", 'Internal Server Error');
     });
   }
 
@@ -60,6 +61,7 @@ export class UsersListComponent implements OnInit {
     }, (err) => {
       console.log(err);
       this.loader = false;
+      swal("Sorry!!", 'Internal Server Error');
     });
   }
 
@@ -92,6 +94,7 @@ export class UsersListComponent implements OnInit {
             this.getUsersPerPage();
           }, (err) => {
             console.log(err);
+            swal("Sorry!!", 'Internal Server Error');
           });
         } else {
           swal("Your user record is safe!");
