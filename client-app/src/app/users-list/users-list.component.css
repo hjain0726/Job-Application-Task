@@ -68,3 +68,12 @@ margin-bottom: 5%;
       height: 32px;
     }
   }
+
+  @media only screen and (max-width: 600px) {
+    .srchinp{
+      width: 300px;
+      margin-top:5%;
+      margin-left: 5%;
+      margin-right: 20%
+    } 
+  }
